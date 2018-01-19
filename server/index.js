@@ -17,7 +17,7 @@ io.on('connection', socket => {
     playerNum++;
     players[socket.id] = state;
     // Emit the update-players method in the client side
-    io.emit('update-players', players);
+    io.emit('update-players', players, playerNum);
   });
 
   socket.on('disconnect', state => {
@@ -54,4 +54,4 @@ io.on('connection', socket => {
   });
 });
 
-export serverData;
+//export serverData;

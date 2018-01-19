@@ -6,7 +6,7 @@ export default function (x, y, game, socket) {
     socket,
     sprite: createPlayer(x, y, game),
     playerName: null,
-    playerNum: serverData.playerNum,
+    playerNum: 0,
     speed: 0,
     speedText: null,
     drive (game) {
