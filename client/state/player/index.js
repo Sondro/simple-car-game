@@ -33,7 +33,7 @@ export default function (x, y, game, socket) {
       }
 
       // Drive forward if W is pressed down
-      if (isDown(game, KEYS.W || KEYS.aU) && this.speed <= 400) {
+      if (isDown(game, KEYS.W) || isDown(game, KEYS.aU) && this.speed <= 400) {
         this.speed += 10
       } else {
         if (this.speed >= 10) {
@@ -59,14 +59,14 @@ export default function (x, y, game, socket) {
         this.sprite.body.angularVelocity = 0
       }
 
-      this.sprite.body.velocity.x = this.speed * Math.cos((this.sprite.body.angle - 360) * 0.01745)
-      this.sprite.body.velocity.y = this.speed * Math.sin((this.sprite.body.angle - 360) * 0.01745)
+      this.sprite.body.velocity.x = this.speed * Math.cos((this.sprite.body.angle - 360) * 0.01745);
+      this.sprite.body.velocity.y = this.speed * Math.sin((this.sprite.body.angle - 360) * 0.01745);
 
       // Brings the player's sprite to top
-      game.world.bringToTop(this.sprite)
+      game.world.bringToTop(this.sprite);
 
-      this.updatePlayerName()
-      this.updatePlayerStatusText('speed', this.sprite.body.x - 57, this.sprite.body.y - 39, this.speedText)
+      this.updatePlayerName();
+      this.updatePlayerStatusText('speed', this.sprite.body.x - 57, this.sprite.body.y - 39, this.speedText);
     },
     emitPlayerData () {
       // Emit the 'move-player' event, updating the player's data on the server
@@ -96,16 +96,16 @@ export default function (x, y, game, socket) {
     },
     updatePlayerStatusText (status, x, y, text) {
       // Capitalize the status text
-      const capitalizedStatus = status[0].toUpperCase() + status.substring(1)
+      const capitalizedStatus = status[0].toUpperCase() + status.substring(1);
       let newText = ''
       // Set the speed text to either 0 or the current speed
-      this[status] < 0 ? this.newText = 0 : this.newText = this[status]
+      this[status] < 0 ? this.newText = 0 : this.newText = this[status];
       // Updates the text position and string
-      text.x = x
-      text.y = y
+      text.x = x;
+      text.y = y;
       text.text = `${capitalizedStatus}: ${parseInt(this.newText)}`
-      game.world.bringToTop(text)
+      game.world.bringToTop(text);
     }
   }
-  return player
+  return player;
 }
