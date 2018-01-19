@@ -1,6 +1,5 @@
 import createPlayer from './createPlayer';
 import { isDown } from '../utils';
-import serverData from '../../../server/index';
 export default function (x, y, game, socket) {
   const player = {
     socket,
