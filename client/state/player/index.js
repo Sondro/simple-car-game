@@ -42,7 +42,7 @@ export default function (x, y, game, socket) {
       }
 
       // Drive backwards if S is pressed down
-      if (isDown(game, KEYS.S || KEYS.aD) && this.speed >= -200) {
+      if (isDown(game, KEYS.S ) || isDown(game, KEYS.aD) && this.speed >= -200) {
         this.speed -= 5
       } else {
         if (this.speed <= -5) {
@@ -51,9 +51,9 @@ export default function (x, y, game, socket) {
       }
 
       // Steers the car
-      if (isDown(game, KEYS.A || KEYS.aL)) {
+      if (isDown(game, KEYS.A ) || isDown(game, KEYS.aL)) {
         this.sprite.body.angularVelocity = -5 * (this.speed / 1000)
-      } else if (isDown(game, KEYS.D || KEYS.aR)) {
+      } else if (isDown(game, KEYS.D) || isDown(game, KEYS.aR)) {
         this.sprite.body.angularVelocity = 5 * (this.speed / 1000)
       } else {
         this.sprite.body.angularVelocity = 0
