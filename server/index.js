@@ -8,11 +8,13 @@ const io = require('socket.io')(Server);
 Server.listen(PORT, () => console.log('Game server running on:', PORT))
 
 const players = {};
+let playerNum = 0;
 
 io.on('connection', socket => {
   // When a player connects
   socket.on('new-player', state => {
     console.log('New player joined with state:', state);
+    playerNum++;
     players[socket.id] = state;
     // Emit the update-players method in the client side
     io.emit('update-players', players);
@@ -51,3 +53,5 @@ io.on('connection', socket => {
     io.emit('update-players', players);
   });
 });
+
+export serverData;

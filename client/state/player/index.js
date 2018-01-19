@@ -1,12 +1,12 @@
-import createPlayer from './createPlayer'
-import { isDown } from '../utils'
-
+import createPlayer from './createPlayer';
+import { isDown } from '../utils';
+import serverData from '../../../server/index';
 export default function (x, y, game, socket) {
   const player = {
     socket,
     sprite: createPlayer(x, y, game),
     playerName: null,
-    playerNum: 1,
+    playerNum: serverData.playerNum,
     speed: 0,
     speedText: null,
     drive (game) {
@@ -90,7 +90,6 @@ export default function (x, y, game, socket) {
     //name = this.socket.id
     updatePlayerName (name = `P${this.playerNum}`, x = this.sprite.body.x - 57, y = this.sprite.body.y - 59) {
       // Updates the player's name text and position
-      this.playerNum++;
       this.playerName.text = `P${this.playerNum}`;
       //this.playerName.text = String(name);
       this.playerName.x = x;
