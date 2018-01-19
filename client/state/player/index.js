@@ -20,7 +20,7 @@ export default function (x, y, game, socket) {
         W: Phaser.Keyboard.W,
         S: Phaser.Keyboard.S,
         A: Phaser.Keyboard.A,
-        D: Phaser.Keyboard.D
+        D: Phaser.Keyboard.D,
         aU: Phaser.Keyboard.UP,
         aD: Phaser.Keyboard.DOWN,
         aL: Phaser.Keyboard.LEFT,
