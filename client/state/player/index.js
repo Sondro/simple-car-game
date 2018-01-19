@@ -21,6 +21,10 @@ export default function (x, y, game, socket) {
         S: Phaser.Keyboard.S,
         A: Phaser.Keyboard.A,
         D: Phaser.Keyboard.D
+        aU: Phaser.Keyboard.UP,
+        aD: Phaser.Keyboard.DOWN,
+        aL: Phaser.Keyboard.LEFT,
+        aR: Phaser.Keyboard.RIGHT,
       }
 
       // Only emit if the player is moving
@@ -29,7 +33,7 @@ export default function (x, y, game, socket) {
       }
 
       // Drive forward if W is pressed down
-      if (isDown(game, KEYS.W) && this.speed <= 400) {
+      if (isDown(game, KEYS.W || KEYS.aU) && this.speed <= 400) {
         this.speed += 10
       } else {
         if (this.speed >= 10) {
@@ -38,7 +42,7 @@ export default function (x, y, game, socket) {
       }
 
       // Drive backwards if S is pressed down
-      if (isDown(game, KEYS.S) && this.speed >= -200) {
+      if (isDown(game, KEYS.S || KEYS.aD) && this.speed >= -200) {
         this.speed -= 5
       } else {
         if (this.speed <= -5) {
@@ -47,9 +51,9 @@ export default function (x, y, game, socket) {
       }
 
       // Steers the car
-      if (isDown(game, KEYS.A)) {
+      if (isDown(game, KEYS.A || KEYS.aL)) {
         this.sprite.body.angularVelocity = -5 * (this.speed / 1000)
-      } else if (isDown(game, KEYS.D)) {
+      } else if (isDown(game, KEYS.D || KEYS.aR)) {
         this.sprite.body.angularVelocity = 5 * (this.speed / 1000)
       } else {
         this.sprite.body.angularVelocity = 0
@@ -84,9 +88,9 @@ export default function (x, y, game, socket) {
     },
     updatePlayerName (name = this.socket.id, x = this.sprite.body.x - 57, y = this.sprite.body.y - 59) {
       // Updates the player's name text and position
-      this.playerName.text = String(name)
-      this.playerName.x = x
-      this.playerName.y = y
+      this.playerName.text = String(name);
+      this.playerName.x = x;
+      this.playerName.y = y;
       // Bring the player's name to top
       game.world.bringToTop(this.playerName)
     },
