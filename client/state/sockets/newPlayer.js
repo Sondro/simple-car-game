@@ -6,6 +6,7 @@ const newPlayer = (socket, player) => {
       angle: player.sprite.rotation,
       playerName: {
         name: String(socket.id),
+      // name: String(player.playerNum),
         x: player.playerName.x,
         y: player.playerName.y
       },

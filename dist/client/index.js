@@ -504,6 +504,7 @@ var newPlayer = function newPlayer(socket, player) {
       angle: player.sprite.rotation,
       playerName: {
         name: String(socket.id),
+        // name: String(player.playerNum),
         x: player.playerName.x,
         y: player.playerName.y
       },
@@ -652,7 +653,7 @@ io.on('connection', function (socket) {
     playerNum++;
     players[socket.id] = state;
     // Emit the update-players method in the client side
-    io.emit('update-players', players, playerNum);
+    io.emit('update-players', players);
   });
 
   socket.on('disconnect', function (state) {
@@ -681,7 +682,8 @@ io.on('connection', function (socket) {
     players[socket.id].playerName = {
       name: playerName.name,
       x: playerName.x,
-      y: playerName.y
+      y: playerName.y,
+      playerNum: playerNum
     };
     players[socket.id].speed = {
       value: speed.value,

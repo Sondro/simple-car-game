@@ -17,7 +17,7 @@ io.on('connection', socket => {
     playerNum++;
     players[socket.id] = state;
     // Emit the update-players method in the client side
-    io.emit('update-players', players, playerNum);
+    io.emit('update-players', players);
   });
 
   socket.on('disconnect', state => {
@@ -42,6 +42,7 @@ io.on('connection', socket => {
       name: playerName.name,
       x: playerName.x,
       y: playerName.y,
+      playerNum: playerNum,
     };
     players[socket.id].speed = {
       value: speed.value,
