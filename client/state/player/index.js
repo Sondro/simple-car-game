@@ -6,7 +6,7 @@ export default function (x, y, game, socket) {
     socket,
     sprite: createPlayer(x, y, game),
     playerName: null,
-    playerNum: 0,
+    playerNum: 1,
     speed: 0,
     speedText: null,
     drive (game) {
@@ -85,13 +85,14 @@ export default function (x, y, game, socket) {
           x: this.speedText.x,
           y: this.speedText.y
         }
-      })
+      });
     },
     //name = this.socket.id
-    updatePlayerName (name = `P${playerNum}`, x = this.sprite.body.x - 57, y = this.sprite.body.y - 59) {
+    updatePlayerName (name = `P${this.playerNum}`, x = this.sprite.body.x - 57, y = this.sprite.body.y - 59) {
       // Updates the player's name text and position
       this.playerNum++;
-      this.playerName.text = String(name);
+      this.playerName.text = `P${this.playerNum}`;
+      //this.playerName.text = String(name);
       this.playerName.x = x;
       this.playerName.y = y;
       // Bring the player's name to top
